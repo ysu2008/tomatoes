@@ -12,5 +12,7 @@
 
 @property (nonatomic, weak, readwrite) IBOutlet UILabel *movieTitleLabel;
 @property (nonatomic, weak, readwrite) IBOutlet UILabel *synopsisLabel;
+@property (nonatomic, weak, readwrite) IBOutlet UILabel *castLabel;
+@property (nonatomic, weak, readwrite) IBOutlet UIImageView *moviePosterImage;
 
 @end

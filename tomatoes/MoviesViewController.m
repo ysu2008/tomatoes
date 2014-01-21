@@ -10,12 +10,16 @@
 
 #import "Movie.h"
 #import "MovieCell.h"
+#import "MovieDetailsViewController.h"
+
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface MoviesViewController ()
 
 @property (nonatomic, readwrite, strong) NSMutableArray *movies;
 
 - (void)reload;
+- (void)setup;
 
 @end
 
@@ -26,18 +30,22 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _movies = [NSMutableArray array];
-        [self reload];
+        [self setup];
     }
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]){
-        _movies = [NSMutableArray array];
-        [self reload];
+        [self setup];
     }
     return self;
+}
+
+- (void)setup {
+    _movies = [NSMutableArray array];
+    self.title = @"Movies";
+    [self reload];
 }
 
 - (void)reload {
@@ -52,6 +60,7 @@
             [self.movies addObject:movie];
         }
         [self.tableView reloadData];
+        NSLog(@"%@", movies);
     }];
 }
 
@@ -67,6 +76,8 @@
     
     cell.movieTitleLabel.text = movie.title;
     cell.synopsisLabel.text = movie.synopsis;
+    [cell.moviePosterImage setImageWithURL:[NSURL URLWithString:movie.posterImageURL]];
+    cell.castLabel.text = movie.cast;
     return cell;
 }
 
@@ -80,6 +91,17 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - storyboard navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    UITableViewCell *selectedCell = (UITableViewCell *)sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:selectedCell];
+    Movie *movie = self.movies[indexPath.row];
+    
+    MovieDetailsViewController *movieDetailsViewController = (MovieDetailsViewController *)(segue.destinationViewController);
+    movieDetailsViewController.movie = movie;
 }
 
 @end

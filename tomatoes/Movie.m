@@ -13,6 +13,7 @@
 @property (nonatomic, readwrite, strong) NSString *title;
 @property (nonatomic, readwrite, strong) NSString *synopsis;
 @property (nonatomic, readwrite, strong) NSString *cast;
+@property (nonatomic, readwrite, strong) NSString *posterImageURL;
 
 @end
 
@@ -22,6 +23,12 @@
     if (self = [super init]){
         _title = dictionary[@"title"];
         _synopsis = dictionary[@"synopsis"];
+        _posterImageURL = dictionary[@"posters"][@"thumbnail"];
+        NSMutableString *castString = [NSMutableString stringWithString:@""];
+        for (NSDictionary *character in dictionary[@"abridged_cast"]){
+            [castString appendString:[NSString stringWithFormat:@", %@", character[@"name"]]];
+        }
+        _cast = [castString substringFromIndex:2];
     }
     return self;
 }

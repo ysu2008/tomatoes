@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Movie;
+
 @interface MovieDetailsViewController : UITableViewController
+
+@property (nonatomic, weak) Movie *movie;
 
 @end
