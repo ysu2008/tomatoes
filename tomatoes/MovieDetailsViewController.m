@@ -9,6 +9,9 @@
 #import "MovieDetailsViewController.h"
 
 #import "Movie.h"
+#import "MovieDetailsCell.h"
+
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface MovieDetailsViewController ()
 
@@ -28,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = self.movie.title;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,11 +62,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    MovieDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieDetailsCell"];
     
-    // Configure the cell...
-    
+    cell.synopsisLabel.text = self.movie.synopsis;
+    [cell.moviePosterImage setImageWithURL:[NSURL URLWithString:self.movie.detailedImageURL]];
+    cell.castLabel.text = self.movie.cast;
     return cell;
 }
 

@@ -13,7 +13,8 @@
 @property (nonatomic, readonly, strong) NSString *title;
 @property (nonatomic, readonly, strong) NSString *synopsis;
 @property (nonatomic, readonly, strong) NSString *cast;
-@property (nonatomic, readonly, strong) NSString *posterImageURL;
+@property (nonatomic, readonly, strong) NSString *thumbnailImageURL;
+@property (nonatomic, readonly, strong) NSString *detailedImageURL;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

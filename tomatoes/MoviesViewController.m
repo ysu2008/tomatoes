@@ -13,6 +13,7 @@
 #import "MovieDetailsViewController.h"
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <SVProgressHUD.h>
 
 @interface MoviesViewController ()
 
@@ -53,18 +54,27 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSDictionary *object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSArray *movies = [object objectForKey:@"movies"];
-        for (NSDictionary *movieDictionary in movies){
-            Movie *movie = [[Movie alloc] initWithDictionary:movieDictionary];
-            [self.movies addObject:movie];
+        NSInteger responseCode = [(NSHTTPURLResponse *)response statusCode];
+        if (!connectionError && responseCode == 200){
+            NSDictionary *object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSArray *movies = [object objectForKey:@"movies"];
+            for (NSDictionary *movieDictionary in movies){
+                Movie *movie = [[Movie alloc] initWithDictionary:movieDictionary];
+                [self.movies addObject:movie];
+            }
+            [self.tableView reloadData];
+            [SVProgressHUD dismiss];
         }
-        [self.tableView reloadData];
-        NSLog(@"%@", movies);
+        else{
+            //show error message
+            NSLog(@"connectionError=%@", connectionError);
+            NSLog(@"responseCode=%d", responseCode);
+            [SVProgressHUD showErrorWithStatus:@"Oops, unable to load movies, check your internet!"];
+        }
     }];
 }
 
-# pragma mark - table view methods 
+# pragma mark - table view methods
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.movies count];
 }
@@ -76,7 +86,7 @@
     
     cell.movieTitleLabel.text = movie.title;
     cell.synopsisLabel.text = movie.synopsis;
-    [cell.moviePosterImage setImageWithURL:[NSURL URLWithString:movie.posterImageURL]];
+    [cell.moviePosterImage setImageWithURL:[NSURL URLWithString:movie.thumbnailImageURL]];
     cell.castLabel.text = movie.cast;
     return cell;
 }
@@ -84,6 +94,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [SVProgressHUD show];
 	// Do any additional setup after loading the view.
 }
 
