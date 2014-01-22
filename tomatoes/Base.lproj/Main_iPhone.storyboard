@@ -80,6 +80,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="EY9-iS-K5O"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="b7O-dt-Drx">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle"/>
+                        <connections>
+                            <action selector="refreshControlRequest:" destination="4EB-VO-bTu" eventType="valueChanged" id="ffE-es-V7u"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBq-AA-XKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

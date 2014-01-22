@@ -14,6 +14,7 @@
 
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <SVProgressHUD.h>
+#import "YRDropdownView.h"
 
 @interface MoviesViewController ()
 
@@ -21,6 +22,7 @@
 
 - (void)reload;
 - (void)setup;
+- (IBAction)refreshControlRequest:(id)sender;
 
 @end
 
@@ -49,6 +51,11 @@
     [self reload];
 }
 
+- (IBAction)refreshControlRequest:(id)sender {
+    [SVProgressHUD show];
+    [self reload];
+}
+
 - (void)reload {
     NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=g9au4hv6khv6wzvzgt55gpqs";
     
@@ -63,14 +70,15 @@
                 [self.movies addObject:movie];
             }
             [self.tableView reloadData];
-            [SVProgressHUD dismiss];
         }
         else{
             //show error message
             NSLog(@"connectionError=%@", connectionError);
             NSLog(@"responseCode=%d", responseCode);
-            [SVProgressHUD showErrorWithStatus:@"Oops, unable to load movies, check your internet!"];
+            [YRDropdownView showDropdownInView:self.tableView title:@"Network Error" detail:@"Please check your internet connection!" animated:YES];
         }
+        [SVProgressHUD dismiss];
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -95,6 +103,7 @@
 {
     [super viewDidLoad];
     [SVProgressHUD show];
+    
 	// Do any additional setup after loading the view.
 }
 

@@ -26,6 +26,9 @@
 		2F9DE3D4188F20EF00B1D60F /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DE3D3188F20EF00B1D60F /* Movie.m */; };
 		2F9DE3D7188F256C00B1D60F /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9DE3D6188F256C00B1D60F /* MovieDetailsViewController.m */; };
 		2FD3A401188F40D300E4810D /* MovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD3A400188F40D300E4810D /* MovieDetailsCell.m */; };
+		2FD80B1F188F4A6100263B1D /* bg-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD80B1B188F4A6100263B1D /* bg-yellow.png */; };
+		2FD80B20188F4A6100263B1D /* bg-yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FD80B1C188F4A6100263B1D /* bg-yellow@2x.png */; };
+		2FD80B21188F4A6100263B1D /* YRDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD80B1E188F4A6100263B1D /* YRDropdownView.m */; };
 		92827828D38D4E358068D94C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7456B0FD4900416CBFAC3EAA /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,10 @@
 		2F9DE3D6188F256C00B1D60F /* MovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsViewController.m; sourceTree = "<group>"; };
 		2FD3A3FF188F40D300E4810D /* MovieDetailsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailsCell.h; sourceTree = "<group>"; };
 		2FD3A400188F40D300E4810D /* MovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailsCell.m; sourceTree = "<group>"; };
+		2FD80B1B188F4A6100263B1D /* bg-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow.png"; sourceTree = "<group>"; };
+		2FD80B1C188F4A6100263B1D /* bg-yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-yellow@2x.png"; sourceTree = "<group>"; };
+		2FD80B1D188F4A6100263B1D /* YRDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRDropdownView.h; sourceTree = "<group>"; };
+		2FD80B1E188F4A6100263B1D /* YRDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRDropdownView.m; sourceTree = "<group>"; };
 		404755EAE7494B2EBD9CAFB4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		7456B0FD4900416CBFAC3EAA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -132,6 +139,7 @@
 		2F9DE39A188F0B9F00B1D60F /* tomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				2FD80B1A188F4A6100263B1D /* YRDropdownView */,
 				2F9DE3D8188F257100B1D60F /* models */,
 				2F9DE3A3188F0B9F00B1D60F /* AppDelegate.h */,
 				2F9DE3A4188F0B9F00B1D60F /* AppDelegate.m */,
@@ -187,6 +195,17 @@
 				2F9DE3D3188F20EF00B1D60F /* Movie.m */,
 			);
 			name = models;
+			sourceTree = "<group>";
+		};
+		2FD80B1A188F4A6100263B1D /* YRDropdownView */ = {
+			isa = PBXGroup;
+			children = (
+				2FD80B1B188F4A6100263B1D /* bg-yellow.png */,
+				2FD80B1C188F4A6100263B1D /* bg-yellow@2x.png */,
+				2FD80B1D188F4A6100263B1D /* YRDropdownView.h */,
+				2FD80B1E188F4A6100263B1D /* YRDropdownView.m */,
+			);
+			path = YRDropdownView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +286,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FD80B1F188F4A6100263B1D /* bg-yellow.png in Resources */,
 				2F9DE3AB188F0B9F00B1D60F /* Main_iPad.storyboard in Resources */,
 				2F9DE3B0188F0B9F00B1D60F /* Images.xcassets in Resources */,
+				2FD80B20188F4A6100263B1D /* bg-yellow@2x.png in Resources */,
 				2F9DE3A8188F0B9F00B1D60F /* Main_iPhone.storyboard in Resources */,
 				2F9DE39F188F0B9F00B1D60F /* InfoPlist.strings in Resources */,
 			);
@@ -328,6 +349,7 @@
 				2F9DE3D1188F1BE300B1D60F /* MovieCell.m in Sources */,
 				2F9DE3D7188F256C00B1D60F /* MovieDetailsViewController.m in Sources */,
 				2FD3A401188F40D300E4810D /* MovieDetailsCell.m in Sources */,
+				2FD80B21188F4A6100263B1D /* YRDropdownView.m in Sources */,
 				2F9DE3CE188F0EA400B1D60F /* MoviesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
